@@ -7,7 +7,14 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-$primary: #f0c040;
-$secondary: #f08000;
+.searchIcon {
+	position: absolute;
+	color: #000;
+	background-color: white;
+	right: 20px;
+}
+
+$primary: #050e2d;
+// $secondary: #f08000;
 /* import bootstrap to set changes */
 @import '~bootstrap/scss/bootstrap';
