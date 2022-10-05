@@ -10,12 +10,17 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import BlockIcon from '@mui/icons-material/Block';
 import AddUserModal from './AddUserModal.jsx';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import DatePicker from './DatePicker.jsx';
 import UsersTable from './UsersTable.jsx';
 
 const DashboardDetails = () => {
 	const [isAddNew, setIsAddNew] = useState(false);
+	const [users, setUsers] = useState({
+		loading: false,
+		error: false,
+		data: [],
+	});
 
 	// filters state
 	const [filters, setFilters] = useState({});
@@ -65,7 +70,13 @@ const DashboardDetails = () => {
 					Add New
 				</Button>
 			</div>
-			{isAddNew && <AddUserModal show={isAddNew} handleClose={handleClose} />}
+			{isAddNew && (
+				<AddUserModal
+					show={isAddNew}
+					handleClose={handleClose}
+					setUsers={setUsers}
+				/>
+			)}
 
 			<div className="border">
 				<Form
@@ -167,6 +178,8 @@ const DashboardDetails = () => {
 					endDate={endDate}
 					filters={filters}
 					checkBoxFilters={checkBoxFilters}
+					users={users}
+					setUsers={setUsers}
 				/>
 			</div>
 		</>

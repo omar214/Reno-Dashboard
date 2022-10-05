@@ -4,10 +4,11 @@ import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 // import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Modal from 'react-bootstrap/Modal';
+import moment from 'moment/moment.js';
 // import API from '../api/api.js';
 // import { toast } from 'react-toastify';
 
-const AddUserModal = ({ handleClose, show, addUser }) => {
+const AddUserModal = ({ handleClose, show, setUsers }) => {
 	const formRef = useRef(null);
 	const [errorMessage, setErrorMessage] = useState('');
 
@@ -15,20 +16,38 @@ const AddUserModal = ({ handleClose, show, addUser }) => {
 		e.preventDefault();
 
 		let name = formRef.current.name.value.trim(),
-			username = formRef.current.username.value.trim(),
+			userName = formRef.current.userName.value.trim(),
 			email = formRef.current.email.value.trim(),
-			userGroup = formRef.current.userGroup,
-			profile = formRef.current.profile.value.trim();
+			group = formRef.current.group.value,
+			profile = formRef.current.profile.value;
 
 		setErrorMessage('');
-		console.log(formRef.current.userGroup.value);
-		if (
-			!name ||
-			!username ||
-			!email
-			// ||!userGroup || !profile
-		)
+		console.log(formRef.current.group.value);
+		console.log(formRef.current.profile.value);
+		if (!name || !userName || !email || !group || !profile)
 			return setErrorMessage('Please Enter All Fields');
+
+		
+		
+		setUsers((prev) => ({
+			loading: false,
+			error: false,
+			data: [
+				{
+					name,
+					userName,
+					email,
+					group,
+					status: 'active',
+					createdOn: moment(Date.now()).format('DD/MMYYYY'),
+					avatar:
+						'https://robohash.org/beataeearumdebitis.png?size=50x50&set=set1',
+				},
+				...prev.data,
+			],
+		}));
+
+		handleClose();
 	};
 	return (
 		<>
@@ -56,9 +75,9 @@ const AddUserModal = ({ handleClose, show, addUser }) => {
 							<Form.Label className="fw-bold"> User Name</Form.Label>
 							<Form.Control
 								required
-								placeholder="Enter username"
+								placeholder="Enter userName"
 								type="text"
-								name="username"
+								name="userName"
 								variant="success"
 							/>
 						</Form.Group>
@@ -75,7 +94,7 @@ const AddUserModal = ({ handleClose, show, addUser }) => {
 
 						<Form.Group className="mb-3">
 							<Form.Label className="fw-bold"> User Group</Form.Label>
-							<Form.Select required name="userGroup">
+							<Form.Select required name="group">
 								<option disabled>choose user group</option>
 								<option value="Office">Office</option>
 								<option value="Managers">Managers</option>
@@ -87,9 +106,9 @@ const AddUserModal = ({ handleClose, show, addUser }) => {
 							<Form.Label className="fw-bold"> Assign Profile</Form.Label>
 							<Form.Select required name="profile">
 								<option disabled>choose user profile</option>
-								<option value="Office">profile 1</option>
-								<option value="Managers">Profile 2</option>
-								<option value="HeadOffice">Profile 3</option>
+								<option value="profile 1">profile 1</option>
+								<option value="Profile 2">Profile 2</option>
+								<option value="Profile 3">Profile 3</option>
 							</Form.Select>
 						</Form.Group>
 

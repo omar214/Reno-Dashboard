@@ -8,13 +8,10 @@ import moment from 'moment';
 
 const isEmpty = (obj) => Object.keys(obj).length === 0;
 
-const UsersTable = ({ startDate, endDate, filters, checkBoxFilters }) => {
+const UsersTable = (props) => {
+	const { startDate, endDate, filters, checkBoxFilters, users, setUsers } =
+		props;
 	const [filteredUsers, setFilteredUsers] = useState([]);
-	const [users, setUsers] = useState({
-		loading: false,
-		error: false,
-		data: [],
-	});
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -108,7 +105,7 @@ const UsersTable = ({ startDate, endDate, filters, checkBoxFilters }) => {
 										<Form.Check type="checkbox" />
 									</td>
 									<td className="d-flex align-items-center">
-										<img src={user.avater} alt="avatar" />
+										<img src={user.avatar} alt="avatar" />
 										<span className="ms-2"> {user.userName}</span>
 									</td>
 									<td>{user.email}</td>
