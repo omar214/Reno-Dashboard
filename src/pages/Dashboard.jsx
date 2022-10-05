@@ -5,17 +5,17 @@ import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
 
 const Dashboard = () => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(true);
 
 	return (
-		<>
+		<Container fluid>
 			<Row>
 				{isOpen && (
 					<Col
 						sm={12}
-						md={3}
+						md={2}
 						className="text-bg-primary text-left"
-						style={{ minHeight: '98vh' }}
+						style={{ minHeight: '100vh', minWidt: '20vh' }}
 					>
 						<Container>
 							<Sidebar />
@@ -23,14 +23,14 @@ const Dashboard = () => {
 					</Col>
 				)}
 
-				<Col md={isOpen ? 9 : 12} className="p-0">
+				<Col md={isOpen ? 10 : 12} sm={12} className="p-0">
 					<Container>
 						<Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
 						<DashboardDetails />
 					</Container>
 				</Col>
 			</Row>
-		</>
+		</Container>
 	);
 };
 

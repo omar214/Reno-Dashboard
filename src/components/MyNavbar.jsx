@@ -17,18 +17,17 @@ function MyNavbar({ isOpen, setIsOpen }) {
 			sticky="top"
 			className="mb-3 w-100 "
 		>
-			<Navbar.Brand className="d-flex flex-column flex-md-row align-items-center ">
+			<Navbar.Brand className="d-flex align-items-center justify-content-center">
 				<Nav.Link>
 					<MenuOpenIcon fontSize="large" onClick={() => setIsOpen((s) => !s)} />
 				</Nav.Link>
-				<span className="mx-3 text-muted">Good Morning</span>
-				<span className="text-muted">
+				<span className="mx-3 text-muted d-none d-md-inline">Good Morning</span>
+				<span className="text-muted d-none d-md-inline">
 					{moment().format('MMMM Do YYYY, h:mm a')}
 				</span>
 			</Navbar.Brand>
 
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-
 			<Navbar.Collapse id="responsive-navbar-nav">
 				<Nav className="ms-auto">
 					<Nav.Link>
@@ -36,7 +35,7 @@ function MyNavbar({ isOpen, setIsOpen }) {
 					</Nav.Link>
 					<Nav.Link className="position-relative">
 						<NotificationsIcon />
-						<Badge pill bg="danger" className="position-absolute top-0 end-0">
+						<Badge pill bg="danger" className="position-absolute top-0 end-md-0">
 							5
 						</Badge>
 					</Nav.Link>
