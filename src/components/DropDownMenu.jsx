@@ -3,9 +3,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
 
-const DropDownMenu = ({ title, options, isCheckBox }) => {
+const DropDownMenu = ({ title, options }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	isCheckBox = isCheckBox || true;
 
 	return (
 		<>
@@ -19,13 +18,7 @@ const DropDownMenu = ({ title, options, isCheckBox }) => {
 				{isMenuOpen && (
 					<ListGroup>
 						{options.map((el) => (
-							<ListGroup.Item className="hover-overlay">
-								{isCheckBox ? (
-									<Form.Check type="checkbox" label="asd" />
-								) : (
-									{ el }
-								)}
-							</ListGroup.Item>
+							<ListGroup.Item>{el}</ListGroup.Item>
 						))}
 					</ListGroup>
 				)}

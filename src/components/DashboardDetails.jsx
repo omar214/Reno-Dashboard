@@ -1,6 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Stack from 'react-bootstrap/Stack';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
@@ -9,10 +11,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import DownloadIcon from '@mui/icons-material/Download';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
-import DropDownMenu from './DropDownMenu.jsx';
 import BlockIcon from '@mui/icons-material/Block';
 import AddUserModal from './AddUserModal.jsx';
 import { useState } from 'react';
+import DatePicker from './DatePicker.jsx';
 
 const DashboardDetails = () => {
 	const [isAddNew, setIsAddNew] = useState(false);
@@ -46,21 +48,24 @@ const DashboardDetails = () => {
 						<Dropdown.Toggle variant="outline-secondary">
 							User Status
 						</Dropdown.Toggle>
-
-						<Dropdown.Menu>
-							<Dropdown.Item>
-								<Form.Check type="checkbox" label="asd" />
-							</Dropdown.Item>
-							<Dropdown.Item>
-								<Form.Check type="checkbox" label="2" />
-							</Dropdown.Item>
-							<Dropdown.Item>
-								<Form.Check type="checkbox" label="3" />
-							</Dropdown.Item>
+						<Dropdown.Menu className="p-3">
+							<ListGroup variant="flush">
+								<ListGroup.Item>
+									<Form.Check type="checkbox" label="Locked" />
+								</ListGroup.Item>
+								<ListGroup.Item>
+									<Form.Check type="checkbox" label="Active" />
+								</ListGroup.Item>
+								<ListGroup.Item>
+									<Form.Check type="checkbox" label="Inactive" />
+								</ListGroup.Item>
+							</ListGroup>
 						</Dropdown.Menu>
 					</Dropdown>
-					<Form.Control type="Date" placeholder="Date" className="w-25" />
-					<a href="#a">All Filters</a>
+
+					<DatePicker />
+					<div className="vr" />
+					<a href="#filters">All Filters</a>
 				</Form>
 
 				<div className=" p-4">
