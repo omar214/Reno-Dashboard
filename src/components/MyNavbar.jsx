@@ -17,7 +17,7 @@ function MyNavbar({ isOpen, setIsOpen }) {
 			sticky="top"
 			className="mb-3 w-100 "
 		>
-			<Navbar.Brand className="text-primary d-flex align-items-center">
+			<Navbar.Brand className="d-flex flex-column flex-md-row align-items-center ">
 				<Nav.Link>
 					<MenuOpenIcon fontSize="large" onClick={() => setIsOpen((s) => !s)} />
 				</Nav.Link>
