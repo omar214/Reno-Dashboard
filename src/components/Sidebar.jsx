@@ -22,41 +22,24 @@ const Sidebar = () => {
 					<SearchIcon fontSize="large" className="searchIcon" />
 				</Form>
 			</div>
-			<div className="mb-3 text-muted">
-				<DashboardIcon />
-				Dashboard
+			<div className="mb-3 text-muted d-flex align-items-center">
+				<DashboardIcon fontSize="large" />
+				<span className="ms-4 fw-bold ">Dashboard</span>
 			</div>
-			<div className="mb-3 text-muted ">Settings</div>
-			<Dropdown>
-				<Dropdown.Toggle className="text-muted">ATM Settings</Dropdown.Toggle>
+			<div className="mb-3 text-muted ">SETTINGS</div>
+			<DropDownMenu
+				title="ATM Settings"
+				options={['option1', 'option2', 'option 3']}
+			/>
+			<DropDownMenu
+				title="Business Setup"
+				options={['option1', 'option2', 'option 3']}
+			/>
+			<DropDownMenu
+				title="User Management"
+				options={['option1', 'option2', 'option 3']}
+			/>
 
-				<Dropdown.Menu>
-					<Dropdown.Item>Action</Dropdown.Item>
-					<Dropdown.Item>Another action</Dropdown.Item>
-					<Dropdown.Item>Something else</Dropdown.Item>
-				</Dropdown.Menu>
-			</Dropdown>
-			<Dropdown>
-				<Dropdown.Toggle className="text-muted">Business Setup</Dropdown.Toggle>
-
-				<Dropdown.Menu>
-					<Dropdown.Item>Action</Dropdown.Item>
-					<Dropdown.Item>Another action</Dropdown.Item>
-					<Dropdown.Item>Something else</Dropdown.Item>
-				</Dropdown.Menu>
-			</Dropdown>
-			<DropDownMenu title="User Management" options={['option1', 'option2']} />
-			{/* <Dropdown>
-				<Dropdown.Toggle className="text-muted">
-					User Management
-				</Dropdown.Toggle>
-
-				<Dropdown.Menu>
-					<Dropdown.Item>Users </Dropdown.Item>
-					<Dropdown.Item>Profiles</Dropdown.Item>
-					<Dropdown.Item>Groups</Dropdown.Item>
-				</Dropdown.Menu>
-			</Dropdown> */}
 			<div className="mt-5 text-muted">License Management</div>
 		</section>
 	);
