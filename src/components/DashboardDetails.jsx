@@ -1,11 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Spinner from 'react-bootstrap/Spinner';
-import Alert from 'react-bootstrap/Alert';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Stack from 'react-bootstrap/Stack';
-import Table from 'react-bootstrap/Table';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -14,39 +11,52 @@ import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import BlockIcon from '@mui/icons-material/Block';
 import AddUserModal from './AddUserModal.jsx';
 import { useEffect, useRef, useState } from 'react';
-import API from '../api/api.js';
 import DatePicker from './DatePicker.jsx';
+import UsersTable from './UsersTable.jsx';
 
 const DashboardDetails = () => {
 	const [isAddNew, setIsAddNew] = useState(false);
-	const [users, setUsers] = useState({
-		loading: false,
-		error: false,
-		data: [],
-	});
 
-	const handleClose = () => setIsAddNew(false);
-	const [dateRange, setDateRange] = useState([null, null]);
-	const [startDate, endDate] = dateRange;
+	// filters state
+	const [filters, setFilters] = useState({});
+	const [checkBoxFilters, setCheckBoxFilter] = useState([]);
+	const [startDate, setStartDate] = useState(null);
+	const [endDate, setEndDate] = useState(null);
 	const formRef = useRef(null);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				setUsers({ loading: true, error: false, data: [] });
-				const { data: res } = await API.get('/users');
-				setUsers({ loading: false, error: false, data: res.users });
-			} catch (error) {
-				setUsers((prev) => ({ ...prev, loading: false, error: true }));
-				console.log(error.message);
-			}
-		};
-		fetchData();
-	}, []);
+	const handleClose = () => setIsAddNew(false);
+	const handleCheckBoxFilters = (e) => {
+		let { checked: value, name } = e.target;
+
+		if (value) {
+			setCheckBoxFilter((prev) => [...prev, name.toLowerCase()]);
+		} else {
+			setCheckBoxFilter((prev) =>
+				prev.filter((el) => el !== name.toLowerCase()),
+			);
+		}
+	};
+	const handleFilters = (e) => {
+		let value = e.target.value;
+		setFilters((prev) => ({
+			...prev,
+			[e.target.name]: value,
+		}));
+
+		if (value === '' && filters.hasOwnProperty(e.target.name)) {
+			let temp = filters;
+			delete temp[`${e.target.name}`];
+			setFilters(temp);
+		}
+	};
 	const handleReset = () => {
 		formRef.current.reset();
-		setDateRange([null, null]);
+		setFilters({});
+		setCheckBoxFilter([]);
+		setStartDate(null);
+		setEndDate(null);
 	};
+
 	return (
 		<>
 			<div className="d-flex justify-content-between mb-3">
@@ -67,6 +77,9 @@ const DashboardDetails = () => {
 						placeholder="Search "
 						className="ps-4 w-50"
 						aria-label="Search"
+						name="search"
+						value={filters.search ? filters.search : ''}
+						onChange={handleFilters}
 					/>
 					<SearchIcon className="position-absolute left-20 " />
 					<Form.Control
@@ -74,6 +87,9 @@ const DashboardDetails = () => {
 						placeholder="user name"
 						className="w-25"
 						aria-label="Search"
+						value={filters.userName ? filters.userName : ''}
+						name="userName"
+						onChange={handleFilters}
 					/>
 					<Dropdown autoClose="outside" variant="light">
 						<Dropdown.Toggle variant="outline-secondary">
@@ -82,26 +98,43 @@ const DashboardDetails = () => {
 						<Dropdown.Menu className="p-3">
 							<ListGroup variant="flush">
 								<ListGroup.Item>
-									<Form.Check type="checkbox" label="Locked" />
+									<Form.Check
+										type="checkbox"
+										label="Locked"
+										name="locked"
+										onChange={handleCheckBoxFilters}
+									/>
 								</ListGroup.Item>
 								<ListGroup.Item>
-									<Form.Check type="checkbox" label="Active" />
+									<Form.Check
+										type="checkbox"
+										label="Active"
+										name="active"
+										onChange={handleCheckBoxFilters}
+									/>
 								</ListGroup.Item>
 								<ListGroup.Item>
-									<Form.Check type="checkbox" label="Inactive" />
+									<Form.Check
+										type="checkbox"
+										label="Inactive"
+										name="inactive"
+										onChange={handleCheckBoxFilters}
+									/>
 								</ListGroup.Item>
 							</ListGroup>
 						</Dropdown.Menu>
 					</Dropdown>
 
 					<DatePicker
-						setDateRange={setDateRange}
+						setStartDate={setStartDate}
+						setEndDate={setEndDate}
 						startDate={startDate}
 						endDate={endDate}
-						dateRange={dateRange}
 					/>
 					<div className="vr" />
-					<a href="#filters">All Filters</a>
+					<span className="cursor-pointer" onClick={handleReset}>
+						Clear All Filters
+					</span>
 				</Form>
 
 				<div className=" p-4">
@@ -122,51 +155,19 @@ const DashboardDetails = () => {
 						<Button variant="secondary" size="sm">
 							<MoreVertOutlinedIcon />
 						</Button>
-						<a onClick={() => handleReset()}>Unselect all</a>
+						<span className="cursor-pointer">Unselect all</span>
 						<Button className="ms-auto" variant="secondary">
 							<DownloadIcon />
 						</Button>
 					</Stack>
 				</div>
 
-				{users.loading ? (
-					<Spinner animation="grow" variant="dark" />
-				) : users.error ? (
-					<Alert variant="danger"> Error while loading data </Alert>
-				) : (
-					<Table bordered hover responsive className="mb-0">
-						<thead>
-							<tr>
-								<th className="text-center">
-									<Form.Check type="checkbox" varient="success" />
-								</th>
-								<th>User Name</th>
-								<th>Email</th>
-								<th>Group</th>
-								<th>Status</th>
-								<th>Created On</th>
-							</tr>
-						</thead>
-						<tbody>
-							{users.data &&
-								users.data.map((user) => (
-									<tr>
-										<td className="text-center">
-											<Form.Check type="checkbox" />
-										</td>
-										<td className="d-flex align-items-center">
-											<img src={user.avater} alt="avatar" />
-											<span className="ms-2"> {user.userName}</span>
-										</td>
-										<td>{user.email}</td>
-										<td>{user.group}</td>
-										<td>{user.status}</td>
-										<td>{user.createdOn}</td>
-									</tr>
-								))}
-						</tbody>
-					</Table>
-				)}
+				<UsersTable
+					startDate={startDate}
+					endDate={endDate}
+					filters={filters}
+					checkBoxFilters={checkBoxFilters}
+				/>
 			</div>
 		</>
 	);

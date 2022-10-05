@@ -22,8 +22,8 @@ const DropDownMenu = ({ title, options }) => {
 				</div>
 				{isMenuOpen && (
 					<ListGroup>
-						{options.map((el) => (
-							<ListGroup.Item action className="fw-bold">
+						{options.map((el, idx) => (
+							<ListGroup.Item action className="fw-bold" key={idx}>
 								{el}
 							</ListGroup.Item>
 						))}

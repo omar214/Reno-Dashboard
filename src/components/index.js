@@ -3,3 +3,4 @@ export { default as AddUserModal } from './AddUserModal.jsx';
 export { default as DashboardDetails } from './DashboardDetails.jsx';
 export { default as DropDownMenu } from './DropDownMenu.jsx';
 export { default as Navbar } from './MyNavbar.jsx';
+export { default as UsersTable } from './UsersTable.jsx';

@@ -1,7 +1,6 @@
 import ReactDatePicker from 'react-datepicker';
 
-const DatePicker = ({ setDateRange, startDate, endDate, dateRange }) => {
-	[startDate, endDate] = dateRange;
+const DatePicker = ({ setStartDate, setEndDate, startDate, endDate }) => {
 	return (
 		<div>
 			<ReactDatePicker
@@ -9,8 +8,8 @@ const DatePicker = ({ setDateRange, startDate, endDate, dateRange }) => {
 				startDate={startDate}
 				endDate={endDate}
 				onChange={(update) => {
-					setDateRange(update);
-					console.log([startDate, endDate]);
+					setStartDate(update[0]);
+					setEndDate(update[1]);
 				}}
 				className="p-1 rounded-2 border-1"
 				placeholderText="Select Date"
