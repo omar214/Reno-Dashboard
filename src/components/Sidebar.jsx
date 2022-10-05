@@ -1,7 +1,6 @@
 import logo from '../assets/logo.png';
 import SearchIcon from '@mui/icons-material/Search';
 import Form from 'react-bootstrap/Form';
-import Dropdown from 'react-bootstrap/Dropdown';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DropDownMenu from './DropDownMenu.jsx';
 

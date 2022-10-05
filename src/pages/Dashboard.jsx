@@ -23,7 +23,7 @@ const Dashboard = () => {
 					</Col>
 				)}
 
-				<Col md={isOpen ? 10 : 12} sm={12} className="p-0">
+				<Col md={isOpen ? 10 : 12} sm={12}>
 					<Container>
 						<Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
 						<DashboardDetails />

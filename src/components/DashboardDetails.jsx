@@ -1,10 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
+import Alert from 'react-bootstrap/Alert';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Stack from 'react-bootstrap/Stack';
-import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
@@ -13,16 +13,36 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import BlockIcon from '@mui/icons-material/Block';
 import AddUserModal from './AddUserModal.jsx';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import API from '../api/api.js';
 import DatePicker from './DatePicker.jsx';
 
 const DashboardDetails = () => {
 	const [isAddNew, setIsAddNew] = useState(false);
+	const [users, setUsers] = useState({
+		loading: false,
+		error: false,
+		data: [],
+	});
+
 	const handleClose = () => setIsAddNew(false);
 	const [dateRange, setDateRange] = useState([null, null]);
 	const [startDate, endDate] = dateRange;
 	const formRef = useRef(null);
 
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				setUsers({ loading: true, error: false, data: [] });
+				const { data: res } = await API.get('/users');
+				setUsers({ loading: false, error: false, data: res.users });
+			} catch (error) {
+				setUsers((prev) => ({ ...prev, loading: false, error: true }));
+				console.log(error.message);
+			}
+		};
+		fetchData();
+	}, []);
 	const handleReset = () => {
 		formRef.current.reset();
 		setDateRange([null, null]);
@@ -109,52 +129,44 @@ const DashboardDetails = () => {
 					</Stack>
 				</div>
 
-				<Table bordered hover responsive className="mb-0">
-					<thead>
-						<tr>
-							<th className="text-center">
-								<Form.Check type="checkbox" varient="success" />
-							</th>
-							<th>User Name</th>
-							<th>Email</th>
-							<th>Group</th>
-							<th>Status</th>
-							<th>Created On</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td className="text-center">
-								<Form.Check type="checkbox" />
-							</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
-						<tr>
-							<td className="text-center">
-								<Form.Check type="checkbox" />
-							</td>
-							<td>Jacob</td>
-							<td>Thornton</td>
-							<td>@fat</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
-						<tr>
-							<td className="text-center">
-								<Form.Check type="checkbox" />
-							</td>
-							<td>Larry the Bird</td>
-							<td>Larry the Bird</td>
-							<td>@twitter</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
-					</tbody>
-				</Table>
+				{users.loading ? (
+					<Spinner animation="grow" variant="dark" />
+				) : users.error ? (
+					<Alert variant="danger"> Error while loading data </Alert>
+				) : (
+					<Table bordered hover responsive className="mb-0">
+						<thead>
+							<tr>
+								<th className="text-center">
+									<Form.Check type="checkbox" varient="success" />
+								</th>
+								<th>User Name</th>
+								<th>Email</th>
+								<th>Group</th>
+								<th>Status</th>
+								<th>Created On</th>
+							</tr>
+						</thead>
+						<tbody>
+							{users.data &&
+								users.data.map((user) => (
+									<tr>
+										<td className="text-center">
+											<Form.Check type="checkbox" />
+										</td>
+										<td className="d-flex align-items-center">
+											<img src={user.avater} alt="avatar" />
+											<span className="ms-2"> {user.userName}</span>
+										</td>
+										<td>{user.email}</td>
+										<td>{user.group}</td>
+										<td>{user.status}</td>
+										<td>{user.createdOn}</td>
+									</tr>
+								))}
+						</tbody>
+					</Table>
+				)}
 			</div>
 		</>
 	);
