@@ -13,12 +13,20 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import BlockIcon from '@mui/icons-material/Block';
 import AddUserModal from './AddUserModal.jsx';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import DatePicker from './DatePicker.jsx';
 
 const DashboardDetails = () => {
 	const [isAddNew, setIsAddNew] = useState(false);
 	const handleClose = () => setIsAddNew(false);
+	const [dateRange, setDateRange] = useState([null, null]);
+	const [startDate, endDate] = dateRange;
+	const formRef = useRef(null);
+
+	const handleReset = () => {
+		formRef.current.reset();
+		setDateRange([null, null]);
+	};
 	return (
 		<>
 			<div className="d-flex justify-content-between mb-3">
@@ -30,7 +38,10 @@ const DashboardDetails = () => {
 			{isAddNew && <AddUserModal show={isAddNew} handleClose={handleClose} />}
 
 			<div className="border">
-				<Form className="d-flex flex-column flex-md-row align-items-center gap-2 w-75 p-4">
+				<Form
+					ref={formRef}
+					className="d-flex flex-column flex-md-row align-items-center gap-2 w-75 p-4"
+				>
 					<Form.Control
 						type="text"
 						placeholder="Search "
@@ -63,7 +74,12 @@ const DashboardDetails = () => {
 						</Dropdown.Menu>
 					</Dropdown>
 
-					<DatePicker />
+					<DatePicker
+						setDateRange={setDateRange}
+						startDate={startDate}
+						endDate={endDate}
+						dateRange={dateRange}
+					/>
 					<div className="vr" />
 					<a href="#filters">All Filters</a>
 				</Form>
@@ -86,14 +102,14 @@ const DashboardDetails = () => {
 						<Button variant="secondary" size="sm">
 							<MoreVertOutlinedIcon />
 						</Button>
-						<a href="#">Unselect all</a>
+						<a onClick={() => handleReset()}>Unselect all</a>
 						<Button className="ms-auto" variant="secondary">
 							<DownloadIcon />
 						</Button>
 					</Stack>
 				</div>
 
-				<Table bordered hover className="mb-0">
+				<Table bordered hover responsive className="mb-0">
 					<thead>
 						<tr>
 							<th className="text-center">

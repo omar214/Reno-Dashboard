@@ -1,21 +1,22 @@
-import { useState } from 'react';
-import Form from 'react-bootstrap/Form';
 import ReactDatePicker from 'react-datepicker';
 
-const DatePicker = () => {
-	const [dateRange, setDateRange] = useState([null, null]);
-	const [startDate, endDate] = dateRange;
+const DatePicker = ({ setDateRange, startDate, endDate, dateRange }) => {
+	[startDate, endDate] = dateRange;
 	return (
-		<ReactDatePicker
-			className="me-0 w-50"
-			selectsRange={true}
-			startDate={startDate}
-			endDate={endDate}
-			onChange={(update) => {
-				setDateRange(update);
-			}}
-			placeholderText="Date"
-		/>
+		<div>
+			<ReactDatePicker
+				selectsRange={true}
+				startDate={startDate}
+				endDate={endDate}
+				onChange={(update) => {
+					setDateRange(update);
+					console.log([startDate, endDate]);
+				}}
+				className="p-1 rounded-2 border-1"
+				placeholderText="Select Date"
+				withPortal
+			/>
+		</div>
 	);
 };
 
