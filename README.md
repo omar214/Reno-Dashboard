@@ -104,4 +104,5 @@ npm start
   <hr />
 
 - Add new User
+
   ![new users](./screenshots/responsive/4.png)
