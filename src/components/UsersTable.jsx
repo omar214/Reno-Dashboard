@@ -25,7 +25,7 @@ const UsersTable = (props) => {
 			}
 		};
 		fetchData();
-	}, []);
+	}, [setUsers]);
 
 	const filterData = (data) => {
 		if (
@@ -50,6 +50,7 @@ const UsersTable = (props) => {
 				...data.filter(
 					(el) =>
 						el.email.toLowerCase().includes(filters.search.toLowerCase()) ||
+						el.userName.toLowerCase().includes(filters.search.toLowerCase()) ||
 						el.group.toLowerCase().includes(filters.search.toLowerCase()) ||
 						el.status.toLowerCase().includes(filters.search.toLowerCase()),
 				),

@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Stack from 'react-bootstrap/Stack';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/col';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -81,77 +83,85 @@ const DashboardDetails = () => {
 			<div className="border">
 				<Form
 					ref={formRef}
-					className="d-flex flex-column flex-md-row align-items-center gap-2 w-75 p-4"
+					className="d-flex flex-column flex-md-row align-items-center gap-2 w-100 w-md-75 p-4 position-realtive"
 				>
 					<Form.Control
 						type="text"
 						placeholder="Search "
-						className="ps-4 w-50"
+						className="ps-4 w-100 w-md-50"
 						aria-label="Search"
 						name="search"
 						value={filters.search ? filters.search : ''}
 						onChange={handleFilters}
 					/>
-					<SearchIcon className="position-absolute left-20 " />
+					<SearchIcon className="position-absolute left-25 d-none d-md-inline" />
 					<Form.Control
 						type="text"
 						placeholder="user name"
-						className="w-25"
+						className="w-100 w-md-25"
 						aria-label="Search"
 						value={filters.userName ? filters.userName : ''}
 						name="userName"
 						onChange={handleFilters}
 					/>
-					<Dropdown autoClose="outside" variant="light">
-						<Dropdown.Toggle variant="outline-secondary">
-							User Status
-						</Dropdown.Toggle>
-						<Dropdown.Menu className="p-3">
-							<ListGroup variant="flush">
-								<ListGroup.Item>
-									<Form.Check
-										type="checkbox"
-										label="Locked"
-										name="locked"
-										onChange={handleCheckBoxFilters}
-									/>
-								</ListGroup.Item>
-								<ListGroup.Item>
-									<Form.Check
-										type="checkbox"
-										label="Active"
-										name="active"
-										onChange={handleCheckBoxFilters}
-									/>
-								</ListGroup.Item>
-								<ListGroup.Item>
-									<Form.Check
-										type="checkbox"
-										label="Inactive"
-										name="inactive"
-										onChange={handleCheckBoxFilters}
-									/>
-								</ListGroup.Item>
-							</ListGroup>
-						</Dropdown.Menu>
-					</Dropdown>
+					<div className="w-100 w-md-50">
+						<Dropdown
+							autoClose="outside"
+							variant="light"
+							className="w-100 w-md-50"
+						>
+							<Dropdown.Toggle variant="outline-secondary" className='w-100 w-md-auto'>
+								User Status
+							</Dropdown.Toggle>
+							<Dropdown.Menu className="p-3">
+								<ListGroup variant="flush">
+									<ListGroup.Item>
+										<Form.Check
+											type="checkbox"
+											label="Locked"
+											name="locked"
+											onChange={handleCheckBoxFilters}
+										/>
+									</ListGroup.Item>
+									<ListGroup.Item>
+										<Form.Check
+											type="checkbox"
+											label="Active"
+											name="active"
+											onChange={handleCheckBoxFilters}
+										/>
+									</ListGroup.Item>
+									<ListGroup.Item>
+										<Form.Check
+											type="checkbox"
+											label="Inactive"
+											name="inactive"
+											onChange={handleCheckBoxFilters}
+										/>
+									</ListGroup.Item>
+								</ListGroup>
+							</Dropdown.Menu>
+						</Dropdown>
+					</div>
 
-					<DatePicker
-						setStartDate={setStartDate}
-						setEndDate={setEndDate}
-						startDate={startDate}
-						endDate={endDate}
-					/>
-					<div className="vr" />
-					<span className="cursor-pointer" onClick={handleReset}>
+					<div className="w-100 w-md-50">
+						<DatePicker
+							setStartDate={setStartDate}
+							setEndDate={setEndDate}
+							startDate={startDate}
+							endDate={endDate}
+						/>
+					</div>
+					<div className="vr d-none d-md-block" />
+					<span className="cursor-pointer mt-3 mt-md-0" onClick={handleReset}>
 						Clear All Filters
 					</span>
 				</Form>
 
 				<div className=" p-4">
-					<Stack gap={4} direction="horizontal">
-						5 selected
-						<div className="vr" />
+					<div gap={4} className="d-flex flex-column flex-md-row gap-3 ">
+						<span className="justify-self-center">5 selected</span>
+						<div className="vr d-none d-md-block" />
 						<Button variant="secondary" size="sm">
 							<EditIcon />
 						</Button>
@@ -170,7 +180,7 @@ const DashboardDetails = () => {
 						<Button className="ms-auto" variant="secondary">
 							<DownloadIcon />
 						</Button>
-					</Stack>
+					</div>
 				</div>
 
 				<UsersTable

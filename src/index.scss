@@ -17,8 +17,8 @@ body {
 .cursor-pointer {
 	cursor: pointer;
 }
-.react-datepicker-wrapper {
-	// width: 50%;
+.react-datepicker__input-container input {
+	width: 100%;
 }
 
 $primary: #050e2d;
@@ -35,6 +35,15 @@ $primary: #050e2d;
 @media (min-width: 768px) {
 	.position-md-fixed {
 		position: fixed !important;
+	}
+	.w-md-50 {
+		width: 50% !important;
+	}
+	.w-md-75 {
+		width: 75% !important;
+	}
+	.w-md-auto {
+		width: auto !important;
 	}
 	.position-md-sticky {
 		position: sticky !important;

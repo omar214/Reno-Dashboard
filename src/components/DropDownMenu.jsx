@@ -23,7 +23,11 @@ const DropDownMenu = ({ title, options }) => {
 				{isMenuOpen && (
 					<ListGroup>
 						{options.map((el, idx) => (
-							<ListGroup.Item action className="fw-bold hover-success" key={idx}>
+							<ListGroup.Item
+								action
+								className="fw-bold hover-success"
+								key={idx}
+							>
 								{el}
 							</ListGroup.Item>
 						))}
