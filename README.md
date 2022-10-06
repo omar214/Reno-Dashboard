@@ -52,6 +52,25 @@ npm start
 ## 🎥 Demo<a name = "demo"></a>
 
 <div name = "demo" align="center" width=1189>
+
+**Demo**
+
+
+https://user-images.githubusercontent.com/60351557/194196106-4297651a-8639-42df-bf89-7b9eba9218c5.mp4
+
+
+
+**Responsive Demo**
+
+
+
+
+https://user-images.githubusercontent.com/60351557/194196047-feb14b36-5167-4f0d-ba0d-380f98d1b1fd.mp4
+
+
+
+
+
 </div>
 
 ## 🎥 screenshots<a name = "screenshots"></a>
