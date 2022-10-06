@@ -11,7 +11,7 @@ const DropDownMenu = ({ title, options }) => {
 		<>
 			<Dropdown className={`d-flex flex-column fw-bold`}>
 				<div
-					className={`p-3 d-flex justify-content-between rounded-3 ${
+					className={`p-3 d-flex justify-content-between rounded-3 cursor-pointer ${
 						isMenuOpen ? 'text-bg-success' : 'text-muted'
 					}`}
 					onClick={() => setIsMenuOpen((s) => !s)}
