@@ -2,14 +2,14 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { default as BootstrapNavbar } from 'react-bootstrap/Navbar';
 import Badge from 'react-bootstrap/Badge';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import moment from 'moment/moment.js';
 
-function MyNavbar({ isOpen, setIsOpen }) {
+function Navbar({ isOpen, setIsOpen }) {
 	return (
-		<Navbar
+		<BootstrapNavbar
 			collapseOnSelect
 			expand="md"
 			bg="light"
@@ -17,7 +17,7 @@ function MyNavbar({ isOpen, setIsOpen }) {
 			sticky="top"
 			className="mb-3 w-100 "
 		>
-			<Navbar.Brand className="d-flex align-items-center justify-content-center">
+			<BootstrapNavbar.Brand className="d-flex align-items-center justify-content-center">
 				<Nav.Link>
 					<MenuOpenIcon fontSize="large" onClick={() => setIsOpen((s) => !s)} />
 				</Nav.Link>
@@ -25,10 +25,10 @@ function MyNavbar({ isOpen, setIsOpen }) {
 				<span className="text-muted d-none d-md-inline">
 					{moment().format('MMMM Do YYYY, h:mm a')}
 				</span>
-			</Navbar.Brand>
+			</BootstrapNavbar.Brand>
 
-			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-			<Navbar.Collapse id="responsive-navbar-nav">
+			<BootstrapNavbar.Toggle aria-controls="responsive-BootstrapNavbar-nav" />
+			<BootstrapNavbar.Collapse id="responsive-BootstrapNavbar-nav">
 				<Nav className="ms-auto">
 					<Nav.Link>
 						<HelpOutlineOutlinedIcon />
@@ -51,9 +51,9 @@ function MyNavbar({ isOpen, setIsOpen }) {
 						<NavDropdown.Item>Option 4</NavDropdown.Item>
 					</NavDropdown>
 				</Nav>
-			</Navbar.Collapse>
-		</Navbar>
+			</BootstrapNavbar.Collapse>
+		</BootstrapNavbar>
 	);
 }
 
-export default MyNavbar;
+export default Navbar;

@@ -2,9 +2,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Stack from 'react-bootstrap/Stack';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/col';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -110,7 +107,10 @@ const DashboardDetails = () => {
 							variant="light"
 							className="w-100 w-md-50"
 						>
-							<Dropdown.Toggle variant="outline-secondary" className='w-100 w-md-auto'>
+							<Dropdown.Toggle
+								variant="outline-secondary"
+								className="w-100 w-md-auto"
+							>
 								User Status
 							</Dropdown.Toggle>
 							<Dropdown.Menu className="p-3">

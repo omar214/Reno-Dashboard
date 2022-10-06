@@ -2,11 +2,8 @@ import { useRef, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
-// import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Modal from 'react-bootstrap/Modal';
 import moment from 'moment/moment.js';
-// import API from '../api/api.js';
-// import { toast } from 'react-toastify';
 
 const AddUserModal = ({ handleClose, show, setUsers }) => {
 	const formRef = useRef(null);
@@ -27,8 +24,6 @@ const AddUserModal = ({ handleClose, show, setUsers }) => {
 		if (!name || !userName || !email || !group || !profile)
 			return setErrorMessage('Please Enter All Fields');
 
-		
-		
 		setUsers((prev) => ({
 			loading: false,
 			error: false,

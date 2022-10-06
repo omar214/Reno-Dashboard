@@ -12,7 +12,6 @@ const Dashboard = () => {
 			<Row>
 				{isOpen && (
 					<Col
-						// sticky="left"
 						sm={12}
 						md={2}
 						className="text-bg-primary text-left"

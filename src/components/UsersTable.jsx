@@ -2,16 +2,13 @@ import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 import Table from 'react-bootstrap/Table';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import API from '../api/api.js';
 import moment from 'moment';
-
-const isEmpty = (obj) => Object.keys(obj).length === 0;
 
 const UsersTable = (props) => {
 	const { startDate, endDate, filters, checkBoxFilters, users, setUsers } =
 		props;
-	const [filteredUsers, setFilteredUsers] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
