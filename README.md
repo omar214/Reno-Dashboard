@@ -1,5 +1,12 @@
 # Reno Dashboard
 
+## 📝 Table of Contents
+
+- [About](#about)
+- [getting started](#start)
+- [Demo](#demo)
+- [screenshots](#screenshots)
+
 ## 🚩About<a name = "about"></a>
 
 dashboard to help admin control their system users & employees
