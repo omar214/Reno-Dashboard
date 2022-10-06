@@ -12,14 +12,13 @@ const Dashboard = () => {
 			<Row>
 				{isOpen && (
 					<Col
+						// sticky="left"
 						sm={12}
 						md={2}
 						className="text-bg-primary text-left"
-						style={{ minHeight: '100vh', minWidt: '20vh' }}
+						style={{ minHeight: '100vh' }}
 					>
-						<Container>
-							<Sidebar />
-						</Container>
+						<Sidebar />
 					</Col>
 				)}
 

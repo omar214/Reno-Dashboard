@@ -25,3 +25,18 @@ $primary: #050e2d;
 // $secondary: #f08000;
 /* import bootstrap to set changes */
 @import '~bootstrap/scss/bootstrap';
+.hover-success {
+	&:hover {
+		color: $success;
+		border-left: 4px solid $success;
+	}
+}
+
+@media (min-width: 768px) {
+	.position-md-fixed {
+		position: fixed !important;
+	}
+	.position-md-sticky {
+		position: sticky !important;
+	}
+}

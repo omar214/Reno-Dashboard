@@ -35,7 +35,11 @@ function MyNavbar({ isOpen, setIsOpen }) {
 					</Nav.Link>
 					<Nav.Link className="position-relative">
 						<NotificationsIcon />
-						<Badge pill bg="danger" className="position-absolute top-0 end-md-0">
+						<Badge
+							pill
+							bg="danger"
+							className="position-absolute top-0 end-md-0"
+						>
 							5
 						</Badge>
 					</Nav.Link>
