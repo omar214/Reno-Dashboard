@@ -4,7 +4,7 @@
 
 dashboard to help admin control their system users & employees
 
-it comes with strong search skills to help save admin time
+it comes with strong search features to help save admin time
 
 ## 🏁Getting Started <a name = "start"></a>
 
@@ -55,3 +55,53 @@ npm start
 </div>
 
 ## 🎥 screenshots<a name = "screenshots"></a>
+
+- collapesd sidebar
+  ![collapesd](./screenshots/1.png)
+
+  <hr />
+
+- expanded sidebar
+  ![expanded sidebar](./screenshots/2.png)
+
+  <hr />
+
+- collapsed with modal
+  ![collapsed with modal](./screenshots/3.png)
+
+  <hr />
+
+- expanded with modal
+  ![expanded with modal](./screenshots/4.png)
+
+  <hr />
+
+- sidebar search
+  ![sidebar search](./screenshots/5.png)
+
+  <hr />
+
+- users search
+  ![users search](./screenshots/6.png)
+
+  <hr />
+
+- Date picker
+  ![Date picker](./screenshots/7.png)
+
+  <hr />
+
+**Responsive**
+
+- Sidebar
+  ![Sidebar](./screenshots/responsive/1.png)
+
+  <hr />
+
+- Users
+  ![Users](./screenshots/responsive/2.png)
+
+  <hr />
+
+- Add new User
+  ![new users](./screenshots/responsive/4.png)
